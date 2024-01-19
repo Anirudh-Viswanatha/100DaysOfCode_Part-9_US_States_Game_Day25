@@ -14,10 +14,11 @@ guessed_states = []
 while len(guessed_states) < 50:
     answer_state = screen.textinput(title = f'{len(guessed_states)}/50 Guess the state', prompt = "What's another state's name?").title()
     if answer_state == "Exit":
-        missed_states = []
-        for i in all_states:
-            if i not in guessed_states:
-                missed_states.append(i)
+        # missed_states = []
+        # for i in all_states:
+        #     if i not in guessed_states:
+        #         missed_states.append(i)
+        missed_states = [i for i in all_states if i not in guessed_states] # above 4 lines were compressed into 1 line using list compreensions.
         new_data = pandas.DataFrame(missed_states)
         new_data.to_csv("states_to_learn.csv")
         break
